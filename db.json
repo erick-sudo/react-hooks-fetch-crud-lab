@@ -9,7 +9,7 @@
         "key",
         "prop"
       ],
-      "correctIndex": 2
+      "correctIndex": 0
     },
     {
       "id": 2,
@@ -96,7 +96,7 @@
         "thread",
         "body"
       ],
-      "correctIndex": "3",
+      "correctIndex": 0,
       "id": 9
     }
   ]

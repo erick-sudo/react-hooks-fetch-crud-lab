@@ -18,6 +18,26 @@ function App() {
     setQuestions(questions.filter(question => question.id!== questionId))
   }
 
+  function updateQuestion(questionId, update) {
+    fetch(`http://localhost:4000/questions/${questionId}`,{
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(update)
+    })
+    .then(response => response.json())
+    .then(response => {
+      setQuestions(questions.map(question => {
+        if (question.id === questionId) {
+          return response
+        } else {
+          return question
+        }
+      }))
+    })
+  }
+
   useEffect(() => {
     fetch("http://localhost:4000/questions")
     .then(res => res.json())
@@ -27,7 +47,7 @@ function App() {
   return (
     <main>
       <AdminNavBar onChangePage={setPage} />
-      {page === "Form" ? <QuestionForm addQuestion={addQuestion} /> : <QuestionList deleteQuestion={deleteQuestion} questions={questions}/>}
+      {page === "Form" ? <QuestionForm addQuestion={addQuestion} /> : <QuestionList updateQuestion={updateQuestion} deleteQuestion={deleteQuestion} questions={questions}/>}
     </main>
   );
 }
