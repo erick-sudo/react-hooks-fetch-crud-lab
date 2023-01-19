@@ -11,15 +11,12 @@ function App() {
     setQuestions([...questions, newQuestion])
   }
 
-  function deleteQuestion(questionId) {
-    fetch(`http://localhost:4000/questions/${questionId}`,{
-      method: "DELETE"
-    })
-    setQuestions(questions.filter(question => question.id!== questionId))
+  function deleteQuestion(id) {
+    setQuestions(questions.filter(question => question.id !== id))
   }
 
-  function updateQuestion(questionId, update) {
-    fetch(`http://localhost:4000/questions/${questionId}`,{
+  function updateQuestion(id, update) {
+    fetch(`http://localhost:4000/questions/${id}`,{
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
@@ -29,7 +26,7 @@ function App() {
     .then(response => response.json())
     .then(response => {
       setQuestions(questions.map(question => {
-        if (question.id === questionId) {
+        if (question.id === id) {
           return response
         } else {
           return question

@@ -9,6 +9,17 @@ function QuestionItem({ question , deleteQuestion, updateQuestion}) {
     </option>
   ));
 
+  function handleDeleteClick() {
+    fetch(`http://localhost:4000/questions/${id}`,{
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res => res.json())
+    .then(() => deleteQuestion(id))
+  }
+
   return (
     <li>
       <h4>Question {id}</h4>
@@ -21,9 +32,7 @@ function QuestionItem({ question , deleteQuestion, updateQuestion}) {
           })
         }} defaultValue={correctIndex}>{options}</select>
       </label>
-      <button onClick={() => {
-        deleteQuestion(id);
-      }}>Delete Question</button>
+      <button onClick={handleDeleteClick}>Delete Question</button>
     </li>
   );
 }

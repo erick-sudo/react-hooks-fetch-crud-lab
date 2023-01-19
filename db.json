@@ -87,17 +87,6 @@
       ],
       "correctIndex": "2",
       "id": 8
-    },
-    {
-      "prompt": "Select which element is not an HTML element",
-      "answers": [
-        "input",
-        "label",
-        "thread",
-        "body"
-      ],
-      "correctIndex": 0,
-      "id": 9
     }
   ]
 }
